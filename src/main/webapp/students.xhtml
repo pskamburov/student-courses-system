@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<f:view locale="#{languageView.localeCode}">
+		<f:loadBundle basename="UIResources" var="msgs" />
+		<h:form>
+			<p:growl id="messages" showDetail="false" />
+
+			<!-- Language Menu -->
+			<p:splitButton value="Pick a language" update="messages"
+				icon="ui-icon-disk">
+				<p:menuitem value="EN" actionListener="#{languageView.changeToEn}"
+					ajax="false" icon="ui-icon-flag" />
+				<p:menuitem value="BG" actionListener="#{languageView.changeToBg}"
+					ajax="false" icon="ui-icon-flag" />
+			</p:splitButton>
+
+			<!-- Menu -->
+			<p:tabMenu activeIndex="1">
+				<p:menuitem value="#{msgs.courses}" outcome="courses"
+					icon="ui-icon-star" />
+				<p:menuitem value="#{msgs.students}" outcome="students"
+					icon="ui-icon-person" />
+				<p:menuitem value="#{msgs.ranking}" outcome="ranking"
+					icon="ui-icon-search" />
+				<p:menuitem value="#{msgs.stats}" outcome="statistics" />
+				<p:menuitem value="#{msgs.finishRanking}"
+					actionListener="#{menuView.evaluate}" update="messages" />
+			</p:tabMenu>
+
+			<!-- Students -->
+			<p:dataTable var="student" value="#{StudentView.students}">
+
+				<p:column headerText="#{msgs.name}" sortBy="#{student.name}">
+					<h:outputText value="#{student.name}" />
+				</p:column>
+				<p:column headerText="#{msgs.specialty}"
+					sortBy="#{student.specialty}">
+					<h:outputText value="#{student.specialty}" />
+				</p:column>
+
+				<p:column headerText="#{msgs.gradeScore}"
+					sortBy="#{student.gradePointsAverage}">
+					<h:outputText value="#{student.gradePointsAverage}" />
+				</p:column>
+
+				<p:column headerText="#{msgs.wishes}">
+					<h:dataTable var="desiredCourse" value="#{student.wishedCourses}">
+						<h:column>
+							<h:outputText value="#{desiredCourse.name}" />
+						</h:column>
+					</h:dataTable>
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+	</f:view>
+</h:body>
+</html>
