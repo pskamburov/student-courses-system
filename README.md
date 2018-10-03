@@ -10,11 +10,18 @@
 
 ## Функционалности
 * Информация за избираемите дисциплини в системата
+![Alt text](demo/courses.png?raw=true "Courses")
 * Избор на език
+![Alt text](demo/language.png?raw=true "Languages support")
 * Студенти
+![Alt text](demo/students.png?raw=true "students")
 * Класиране на студентите
+![Alt text](demo/eval.png?raw=true "Evaluation")
 * Класация
+![Alt text](demo/ranks.png?raw=true "Ranking")
 * Статистики
+![Alt text](demo/stat1.png?raw=true "Stats")
+![Alt text](demo/stat2.png?raw=true "Stats")
 
 ## Инсталиране
 Стандартен maven проект.
